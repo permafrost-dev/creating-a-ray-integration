@@ -38,7 +38,10 @@ export function createHtmlPayload(htmlContent: string, uuid: string | null = nul
 
 
 // create a "log" payload to display basic text in Ray
-export function createLogPayload(text: string, uuid: string | null = null) {
-	const payload = createPayload('log', 'log', text);
+export function createLogPayload(text: string|string[], uuid: string | null = null) {
+    if (!Array.isArray(text)) {
+        text = [text];
+    }
+	const payload = createPayload('log', 'log', text, 'values');
 	return createSendablePayload([payload], uuid);
 }

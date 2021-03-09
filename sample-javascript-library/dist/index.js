@@ -535,7 +535,10 @@ function createHtmlPayload(htmlContent, uuid = null) {
   return createSendablePayload([payload], uuid);
 }
 function createLogPayload(text, uuid = null) {
-  const payload = createPayload("log", "log", text);
+  if (!Array.isArray(text)) {
+    text = [text];
+  }
+  const payload = createPayload("log", "log", text, "values");
   return createSendablePayload([payload], uuid);
 }
 
@@ -554,10 +557,8 @@ var Ray = class {
     return this.sendRequest(payload);
   }
   send(...args) {
-    args.forEach((arg) => {
-      const payload = createLogPayload("log", null, arg);
-      this.sendRequest(payload);
-    });
+    const payload = createLogPayload(args, this.uuid);
+    this.sendRequest(payload);
     return this;
   }
   ban() {

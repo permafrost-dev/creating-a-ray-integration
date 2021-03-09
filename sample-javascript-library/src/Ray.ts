@@ -16,10 +16,8 @@ export class Ray {
 	}
 
 	public send(...args: any[]): Ray {
-		args.forEach(arg => {
-			const payload = createLogPayload('log', null, arg);			
-			this.sendRequest(payload);
-		});
+		const payload = createLogPayload(args, this.uuid);			
+		this.sendRequest(payload);
 		
 		return this;
 	}
