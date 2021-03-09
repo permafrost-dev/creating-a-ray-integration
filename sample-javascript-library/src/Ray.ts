@@ -38,4 +38,8 @@ export class Ray {
 	}
 }
 
+export function ray(...args) {
+    return (new Ray()).send(...args);
+}
+
 export default Ray;

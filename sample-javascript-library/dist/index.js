@@ -493,7 +493,8 @@ var require_dist = __commonJS((exports2) => {
 __markAsModule(exports);
 __export(exports, {
   Ray: () => Ray,
-  default: () => Ray_default
+  default: () => Ray_default,
+  ray: () => ray
 });
 
 // src/payloadUtils.ts
@@ -575,4 +576,7 @@ var Ray = class {
     return this;
   }
 };
+function ray(...args) {
+  return new Ray().send(...args);
+}
 var Ray_default = Ray;

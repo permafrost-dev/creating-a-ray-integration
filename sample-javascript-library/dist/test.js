@@ -1,11 +1,7 @@
-const { Ray } = require('./index');
-
-function ray(...args) {
-    return (new Ray()).send(...args);
-}
+const { ray } = require('./index');
 
 ray().html('<em>hello world</em>').color('red');
 
-ray().send('hello world 2').color('blue');
+ray('hello world 2').color('blue');
 
 ray().ban();
